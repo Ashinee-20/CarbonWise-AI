@@ -4,7 +4,7 @@ CarbonWise AI is a production-ready Next.js 15 web application that helps indivi
 
 ## Problem Statement
 
-Individuals often want to reduce their environmental impact but lack clear, personalized feedback on which daily choices matter most. CarbonWise AI turns transportation, food, electricity, and shopping habits into understandable carbon metrics, practical actions, future forecasts, and a "Carbon Twin" annual projection.
+Design a solution that helps individuals understand, track, and reduce their carbon footprint through simple actions and personalized insights. CarbonWise AI turns transportation, food, electricity, and shopping habits into understandable carbon metrics, practical actions, future forecasts, and a "Carbon Twin" annual projection.
 
 ## Chosen Vertical
 
@@ -47,8 +47,9 @@ Google Cloud
 - Daily activity logging for transportation, food, electricity, and shopping
 - Category-wise footprint calculation and breakdown
 - Weekly trend chart and monthly comparison metrics
-- AI Sustainability Coach with personalized recommendations
-- Specialist coach agents for mobility, food, electricity, and lifestyle
+- AI Sustainability Coach with personalized recommendations and action plans
+- Specialist coach agents for mobility, food, electricity, shopping, and overall footprint
+- Personalized AI assistant summary with focus areas and next steps
 - Daily eco-friendly challenges and reward points
 - Future footprint forecasting
 - Carbon Twin projected annual emissions
@@ -75,6 +76,7 @@ Google Cloud
 - Security headers are configured in `next.config.ts`.
 - No secrets are committed. Runtime configuration belongs in `.env`, based on `.env.example`.
 - UI renders user inputs as React values, preventing raw HTML injection.
+- The AI assistant and coach logic remain deterministic and auditable to ensure responsible recommendations.
 
 ## Testing Strategy
 

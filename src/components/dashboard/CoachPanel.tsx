@@ -1,6 +1,6 @@
 "use client";
 
-import { Bot, Sparkles, Target, WandSparkles } from "lucide-react";
+import { Bot, BrainCircuit, Sparkles, Target, WandSparkles } from "lucide-react";
 import type { CoachResponse } from "@/types/carbon";
 
 interface CoachPanelProps {
@@ -36,7 +36,7 @@ export function CoachPanel({ coach, loading, onRefresh }: CoachPanelProps) {
 
       <p className="mt-5 rounded-lg bg-white/10 p-4 text-sm leading-6 text-white/85">{coach?.insight ?? "Loading personalized insight..."}</p>
 
-      <div className="mt-5 grid gap-4 lg:grid-cols-2">
+      <div className="mt-5 grid gap-4 lg:grid-cols-3">
         <article className="rounded-lg bg-white/10 p-4">
           <div className="flex items-center gap-2 text-sm font-semibold">
             <Target size={17} aria-hidden="true" />
@@ -53,6 +53,27 @@ export function CoachPanel({ coach, loading, onRefresh }: CoachPanelProps) {
           </div>
           <p className="mt-3 text-3xl font-semibold">{coach?.summary.annualProjectionKg.toLocaleString() ?? "--"} kg</p>
           <p className="mt-2 text-sm text-white/75">Projected annual emissions if current habits continue.</p>
+        </article>
+        <article className="rounded-lg bg-white/10 p-4">
+          <div className="flex items-center gap-2 text-sm font-semibold">
+            <BrainCircuit size={17} aria-hidden="true" />
+            AI Assistant
+          </div>
+          <p className="mt-3 text-sm text-white/85">{coach?.assistant.headline ?? "Building a personalized action plan..."}</p>
+          <ul className="mt-4 space-y-2 text-sm leading-6 text-white/75">
+            {coach?.assistant.focusAreas.map((item) => (
+              <li key={item} className="list-disc pl-4">
+                {item}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-4 space-y-2">
+            {coach?.assistant.actionPlan.map((step) => (
+              <p key={step} className="rounded-lg bg-white/5 p-3 text-sm text-white/80">
+                {step}
+              </p>
+            ))}
+          </div>
         </article>
       </div>
     </section>

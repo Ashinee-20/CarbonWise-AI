@@ -1,4 +1,4 @@
-export type ActivityCategory = "transport" | "food" | "electricity" | "shopping";
+export type ActivityCategory = "transport" | "food" | "electricity" | "shopping" | "overall";
 
 export type TransportMode = "car" | "bus" | "train" | "flight" | "bike" | "walk";
 export type MealType = "plant" | "mixed" | "meat" | "dairy";
@@ -75,6 +75,12 @@ export interface CoachAgentInsight {
   estimatedWeeklySavingsKg: number;
 }
 
+export interface AssistantResponse {
+  headline: string;
+  focusAreas: string[];
+  actionPlan: string[];
+}
+
 export interface HistoricalComparison {
   currentWeekKg: number;
   previousWeekKg: number;
@@ -90,6 +96,7 @@ export interface CoachResponse {
   recommendations: Recommendation[];
   challenge: Challenge;
   insight: string;
+  assistant: AssistantResponse;
   agents: CoachAgentInsight[];
   comparison: HistoricalComparison;
   forecast: {

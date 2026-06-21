@@ -10,6 +10,25 @@ type AgentDefinition = {
 
 const agentDefinitions: AgentDefinition[] = [
   {
+    id: "ai-agent",
+    name: "AI Agent",
+    specialty: "overall",
+    build: (activities) => {
+      const summary = calculateSummary(activities);
+      const top = Object.entries(summary.categoryKg).sort((a, b) => b[1] - a[1])[0];
+      const averageDaily = summary.totalKg / Math.max(activities.length, 1);
+      const topCategory = top?.[0] ?? "transport";
+      const topValue = top?.[1] ?? 0;
+
+      return {
+        finding: `Your average daily footprint is ${averageDaily.toFixed(1)} kg CO2e, with ${topCategory} at ${topValue.toFixed(1)} kg.`,
+        action: `Focus first on ${topCategory} and follow the highest-impact actions for a measurable weekly reduction.`,
+        priority: "high",
+        estimatedWeeklySavingsKg: Math.max(6.5, Number((averageDaily * 0.8).toFixed(1)))
+      };
+    }
+  },
+  {
     id: "mobility-agent",
     name: "Mobility Agent",
     specialty: "transport",
@@ -88,5 +107,6 @@ export function runCoachAgents(activities: DailyActivity[]): CoachAgentInsight[]
 
 function priorityScore(agent: CoachAgentInsight, highestCategory?: string): number {
   const base = agent.priority === "high" ? 3 : agent.priority === "medium" ? 2 : 1;
-  return base + (agent.specialty === highestCategory ? 1 : 0);
+  const categoryBonus = agent.specialty === highestCategory ? 1 : agent.specialty === "overall" ? 2 : 0;
+  return base + categoryBonus;
 }
