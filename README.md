@@ -22,9 +22,13 @@ Next.js App Router
   |-- API routes: /api/footprint, /api/coach, /api/forecast
   |
 Service Layer
+  |-- carbon/coach.ts
+  |-- carbon/agents.ts
+  |-- carbon/analytics.ts
   |-- carbon/calculator.ts
   |-- carbon/recommendations.ts
   |-- carbon/forecast.ts
+  |-- api/activity-request.ts
   |
 Security Layer
   |-- Zod validation
@@ -44,9 +48,11 @@ Google Cloud
 - Category-wise footprint calculation and breakdown
 - Weekly trend chart and monthly comparison metrics
 - AI Sustainability Coach with personalized recommendations
+- Specialist coach agents for mobility, food, electricity, and lifestyle
 - Daily eco-friendly challenges and reward points
 - Future footprint forecasting
 - Carbon Twin projected annual emissions
+- Historical weekly and monthly comparison
 - Achievement badges and daily streaks
 - Responsive, keyboard-friendly, accessible UI
 
@@ -55,6 +61,7 @@ Google Cloud
 - Next.js 15 App Router keeps frontend and backend on one deployed URL.
 - TypeScript strict mode provides strong typing across domain, API, and UI code.
 - Service layer separates carbon calculations, recommendations, forecasting, validation, and security helpers.
+- Agent orchestration is deterministic and testable: specialist agents inspect category behavior, rank priorities, and feed the AI coach response.
 - Browser localStorage is used for the prototype's private personal history while same-origin API routes perform validated calculations.
 - Dynamic chart loading reduces initial rendering work.
 - Custom lightweight SVG charts avoid heavy visualization dependencies.
@@ -74,7 +81,9 @@ Google Cloud
 The project includes meaningful example coverage with Vitest:
 
 - Unit tests for emissions calculation and scoring
+- Agent orchestration, historical comparison, recommendations, forecasting, and coach response tests
 - Validation tests for accepted and rejected activity payloads
+- API request parsing tests for malformed JSON and valid payloads
 - Utility tests for sanitization
 - Component tests for activity submission and accessible metric rendering
 

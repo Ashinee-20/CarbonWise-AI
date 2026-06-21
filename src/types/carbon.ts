@@ -65,11 +65,33 @@ export interface Challenge {
   category: ActivityCategory;
 }
 
+export interface CoachAgentInsight {
+  id: string;
+  name: string;
+  specialty: ActivityCategory;
+  finding: string;
+  action: string;
+  priority: "high" | "medium" | "low";
+  estimatedWeeklySavingsKg: number;
+}
+
+export interface HistoricalComparison {
+  currentWeekKg: number;
+  previousWeekKg: number;
+  weekDeltaPercent: number;
+  currentMonthKg: number;
+  previousMonthKg: number;
+  monthDeltaPercent: number;
+  direction: "improving" | "worsening" | "steady";
+}
+
 export interface CoachResponse {
   summary: FootprintSummary;
   recommendations: Recommendation[];
   challenge: Challenge;
   insight: string;
+  agents: CoachAgentInsight[];
+  comparison: HistoricalComparison;
   forecast: {
     nextWeekKg: number;
     nextMonthKg: number;

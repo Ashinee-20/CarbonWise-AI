@@ -4,7 +4,13 @@ import { sampleActivities } from "@/lib/data/sample-activities";
 
 describe("carbon calculator", () => {
   it("calculates category emissions for one activity", () => {
-    const emissions = calculateActivityEmissions(sampleActivities[0]);
+    const emissions = calculateActivityEmissions({
+      date: "2026-06-15",
+      transport: { mode: "train", distanceKm: 18 },
+      food: { mealType: "mixed", meals: 3 },
+      electricity: { kwh: 12, renewablePercent: 25 },
+      shopping: { type: "services", spendUsd: 18 }
+    });
 
     expect(emissions.transport).toBeCloseTo(0.74);
     expect(emissions.food).toBeCloseTo(5.4);

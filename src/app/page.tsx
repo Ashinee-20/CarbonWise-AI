@@ -6,6 +6,7 @@ import { ActivityForm } from "@/components/forms/ActivityForm";
 import { BarChart } from "@/components/charts/BarChart";
 import { CoachPanel } from "@/components/dashboard/CoachPanel";
 import { Achievements } from "@/components/dashboard/Achievements";
+import { AgentInsights, ComparisonPanel } from "@/components/dashboard/AgentInsights";
 import { Recommendations } from "@/components/dashboard/Recommendations";
 import { MetricCard } from "@/components/ui/MetricCard";
 import { ProgressRing } from "@/components/ui/ProgressRing";
@@ -90,6 +91,8 @@ export default function Home() {
       <section id="analytics" className="mx-auto grid w-full max-w-7xl gap-6 px-5 pb-12 lg:grid-cols-2">
         <BarChart title="Category Breakdown" data={chartData} />
         <TrendChart points={trend} />
+        {coach ? <ComparisonPanel {...coach.comparison} /> : null}
+        {coach ? <AgentInsights agents={coach.agents} /> : null}
         <Recommendations items={coach?.recommendations ?? []} />
         <Achievements badges={summary.badges} streak={summary.streak} />
       </section>
